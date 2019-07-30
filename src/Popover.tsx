@@ -12,6 +12,7 @@ import {
   View,
   ViewStyle,
   StyleProp,
+  StatusBar
 } from 'react-native';
 import { computeGeometry, Geometry, Placement, Rect, Size } from './PopoverGeometry';
 
@@ -251,6 +252,15 @@ export class Popover extends React.PureComponent<PopoverProps, PopoverState> {
     const width = arrowSize!.width + 2;
     const height = arrowSize!.height * 2 + 2;
 
+    
+            if(Platform.OS === "android"){
+                let sBarHeight = StatusBar.currentHeight;
+                origin.y = origin.y-sBarHeight;
+                anchor.y = anchor.y-sBarHeight;
+                console.log("************************");
+                console.log(origin);
+            }
+    
     return {
       background: [
         styles.background,
